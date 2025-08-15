@@ -4,12 +4,16 @@ import { Badge } from "@/components/ui/badge";
 import { Heart, Image, Type, Layout, Sparkles } from "lucide-react";
 
 interface Template {
-  id: number;
+  id: string;
   title: string;
   category: string;
   color: string;
   description: string;
   features: string[];
+  type?: string;
+  pages?: string[];
+  interactiveElements?: string[];
+  difficulty?: string;
 }
 
 interface TemplatePreviewProps {
@@ -18,12 +22,31 @@ interface TemplatePreviewProps {
 }
 
 const TemplatePreview = ({ template, children }: TemplatePreviewProps) => {
-  const mockPreviewFeatures = [
-    { icon: Layout, title: "Responsive Design", description: "Looks perfect on all devices" },
-    { icon: Image, title: "Photo Gallery", description: "Beautiful image displays" },
-    { icon: Type, title: "Custom Typography", description: "Elegant fonts and styling" },
-    { icon: Sparkles, title: "Smooth Animations", description: "Delightful interactions" },
-  ];
+  const getPreviewFeatures = () => {
+    const baseFeatures = [
+      { icon: Layout, title: "Responsive Design", description: "Looks perfect on all devices" },
+      { icon: Type, title: "Custom Typography", description: "Elegant fonts and styling" },
+    ];
+
+    if (template.type === "multi-page") {
+      baseFeatures.push(
+        { icon: Image, title: "Multi-Page Layout", description: `${template.pages?.length || 3} interactive pages` },
+        { icon: Sparkles, title: "Page Navigation", description: "Smooth transitions between pages" }
+      );
+    } else if (template.type === "interactive") {
+      baseFeatures.push(
+        { icon: Sparkles, title: "Interactive Elements", description: "Forms, counters, and live features" },
+        { icon: Image, title: "Dynamic Content", description: "User-generated content support" }
+      );
+    } else {
+      baseFeatures.push(
+        { icon: Image, title: "Photo Integration", description: "Beautiful image displays" },
+        { icon: Sparkles, title: "Smooth Animations", description: "Delightful interactions" }
+      );
+    }
+
+    return baseFeatures;
+  };
 
   const getThemeFromColor = (color: string) => {
     switch (color) {
@@ -95,11 +118,39 @@ const TemplatePreview = ({ template, children }: TemplatePreviewProps) => {
             </div>
           </div>
 
+          {/* Template Type Info */}
+          {template.pages && (
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold">Page Structure:</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                {template.pages.map((page, index) => (
+                  <div key={index} className="bg-muted/30 p-2 rounded-md text-center">
+                    <span className="text-xs font-medium">{page}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Interactive Elements */}
+          {template.interactiveElements && (
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold">Interactive Features:</h3>
+              <div className="flex flex-wrap gap-2">
+                {template.interactiveElements.map((element, index) => (
+                  <Badge key={index} variant="outline" className="text-xs">
+                    ✨ {element}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Template Features */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">What's Included:</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {mockPreviewFeatures.map((feature, index) => {
+              {getPreviewFeatures().map((feature, index) => {
                 const IconComponent = feature.icon;
                 return (
                   <div key={index} className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">

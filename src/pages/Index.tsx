@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import TemplateGallery from "@/components/TemplateGallery";
+import TemplateSelector from "@/components/TemplateSelector";
 import HowItWorks from "@/components/HowItWorks";
 import Footer from "@/components/Footer";
 
@@ -7,7 +7,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Hero />
-      <TemplateGallery />
+      <TemplateSelector />
       <HowItWorks />
       <Footer />
     </div>

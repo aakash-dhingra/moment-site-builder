@@ -119,7 +119,12 @@ const TemplateGallery = () => {
                   </div>
                   
                   <div className="space-y-3">
-                    <TemplateCreator template={template}>
+                    <TemplateCreator template={{
+                      ...template,
+                      id: template.id.toString(),
+                      type: 'single-page',
+                      difficulty: 'simple'
+                    }}>
                       <Button 
                         variant={getVariantFromColor(template.color)} 
                         className="w-full"
@@ -127,7 +132,12 @@ const TemplateGallery = () => {
                         Use This Template
                       </Button>
                     </TemplateCreator>
-                    <TemplatePreview template={template}>
+                    <TemplatePreview template={{
+                      ...template,
+                      id: template.id.toString(),
+                      type: 'single-page',
+                      difficulty: 'simple'
+                    }}>
                       <Button variant="outline" className="w-full">
                         Preview
                       </Button>
@@ -140,7 +150,14 @@ const TemplateGallery = () => {
         </div>
         
         <div className="text-center mt-12">
-          <TemplateCreator template={{ id: 0, title: "Custom Template", category: "Custom", color: "professional" }}>
+          <TemplateCreator template={{ 
+            id: "custom", 
+            title: "Custom Template", 
+            category: "Custom", 
+            color: "professional",
+            type: 'single-page',
+            difficulty: 'advanced'
+          }}>
             <Button variant="hero" size="lg">
               <Gift className="w-5 h-5" />
               Create Custom Template

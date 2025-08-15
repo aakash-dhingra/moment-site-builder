@@ -9,10 +9,15 @@ import { Upload, X, Image } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface Template {
-  id: number;
+  id: string;
   title: string;
   category: string;
   color: string;
+  description?: string;
+  features?: string[];
+  type?: string;
+  pages?: string[];
+  difficulty?: string;
 }
 
 interface TemplateCreatorProps {
@@ -54,12 +59,20 @@ const TemplateCreator = ({ template, children }: TemplateCreatorProps) => {
       setIsGenerating(false);
       setIsOpen(false);
       
-      // Generate a mock URL
-      const mockUrl = `https://your-gift.site/${websiteName.toLowerCase().replace(/\s+/g, '-')}-${Math.random().toString(36).substr(2, 8)}`;
+      // Generate a mock URL based on template type
+      const templateType = template.type || 'single-page';
+      const mockUrl = `https://your-gift.site/${websiteName.toLowerCase().replace(/\s+/g, '-')}-${template.id}-${Math.random().toString(36).substr(2, 8)}`;
+      
+      const pageCount = template.pages ? template.pages.length : 1;
+      const templateDescription = templateType === 'multi-page' 
+        ? `${pageCount} interactive pages`
+        : templateType === 'interactive'
+        ? 'Interactive experience'
+        : 'Beautiful single page';
       
       toast({
-        title: "Website Created Successfully! 🎉",
-        description: `Your website is ready at: ${mockUrl}`,
+        title: "🎉 Your Gift Website is Ready!",
+        description: `${templateDescription} created at: ${mockUrl}`,
       });
       
       // Reset form
