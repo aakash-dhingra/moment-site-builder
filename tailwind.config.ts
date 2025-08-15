@@ -52,6 +52,22 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				romantic: {
+					DEFAULT: 'hsl(var(--romantic))',
+					foreground: 'hsl(var(--romantic-foreground))'
+				},
+				celebration: {
+					DEFAULT: 'hsl(var(--celebration))',
+					foreground: 'hsl(var(--celebration-foreground))'
+				},
+				gentle: {
+					DEFAULT: 'hsl(var(--gentle))',
+					foreground: 'hsl(var(--gentle-foreground))'
+				},
+				elegant: {
+					DEFAULT: 'hsl(var(--elegant))',
+					foreground: 'hsl(var(--elegant-foreground))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -62,6 +78,18 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			backgroundImage: {
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-romantic': 'var(--gradient-romantic)',
+				'gradient-celebration': 'var(--gradient-celebration)',
+				'gradient-gentle': 'var(--gradient-gentle)',
+				'gradient-elegant': 'var(--gradient-elegant)',
+			},
+			boxShadow: {
+				'soft': 'var(--shadow-soft)',
+				'romantic': 'var(--shadow-romantic)',
+				'glow': 'var(--shadow-glow)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
