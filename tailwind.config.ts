@@ -68,6 +68,10 @@ export default {
 					DEFAULT: 'hsl(var(--elegant))',
 					foreground: 'hsl(var(--elegant-foreground))'
 				},
+				professional: {
+					DEFAULT: 'hsl(var(--professional))',
+					foreground: 'hsl(var(--professional-foreground))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -85,10 +89,11 @@ export default {
 				'gradient-celebration': 'var(--gradient-celebration)',
 				'gradient-gentle': 'var(--gradient-gentle)',
 				'gradient-elegant': 'var(--gradient-elegant)',
+				'gradient-professional': 'var(--gradient-professional)',
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',
-				'romantic': 'var(--shadow-romantic)',
+				'elevated': 'var(--shadow-elevated)',
 				'glow': 'var(--shadow-glow)',
 			},
 			borderRadius: {

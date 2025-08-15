@@ -1,8 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Heart, Gift, Sparkles } from "lucide-react";
+import { useState } from "react";
 import heroImage from "@/assets/hero-image.jpg";
 
 const Hero = () => {
+  const [showTemplates, setShowTemplates] = useState(false);
+
+  const scrollToTemplates = () => {
+    const templatesSection = document.getElementById('templates-section');
+    templatesSection?.scrollIntoView({ behavior: 'smooth' });
+  };
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -40,11 +47,21 @@ const Hero = () => {
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button variant="hero" size="lg" className="min-w-48">
+            <Button 
+              variant="hero" 
+              size="lg" 
+              className="min-w-48"
+              onClick={scrollToTemplates}
+            >
               <Sparkles className="w-5 h-5" />
               Start Creating
             </Button>
-            <Button variant="outline" size="lg" className="min-w-48">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="min-w-48"
+              onClick={scrollToTemplates}
+            >
               <Gift className="w-5 h-5" />
               View Templates
             </Button>

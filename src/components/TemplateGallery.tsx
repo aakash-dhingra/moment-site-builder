@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Cake, Gift, Flower, Gem, Coffee } from "lucide-react";
+import TemplateCreator from "@/components/TemplateCreator";
+import TemplatePreview from "@/components/TemplatePreview";
 
 const TemplateGallery = () => {
   const templates = [
@@ -82,7 +84,7 @@ const TemplateGallery = () => {
 
   return (
     <section className="py-20 px-4">
-      <div className="container mx-auto">
+      <div className="container mx-auto" id="templates-section">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Choose Your Perfect
@@ -117,15 +119,19 @@ const TemplateGallery = () => {
                   </div>
                   
                   <div className="space-y-3">
-                    <Button 
-                      variant={getVariantFromColor(template.color)} 
-                      className="w-full"
-                    >
-                      Use This Template
-                    </Button>
-                    <Button variant="outline" className="w-full">
-                      Preview
-                    </Button>
+                    <TemplateCreator template={template}>
+                      <Button 
+                        variant={getVariantFromColor(template.color)} 
+                        className="w-full"
+                      >
+                        Use This Template
+                      </Button>
+                    </TemplateCreator>
+                    <TemplatePreview template={template}>
+                      <Button variant="outline" className="w-full">
+                        Preview
+                      </Button>
+                    </TemplatePreview>
                   </div>
                 </CardContent>
               </Card>
@@ -134,10 +140,12 @@ const TemplateGallery = () => {
         </div>
         
         <div className="text-center mt-12">
-          <Button variant="hero" size="lg">
-            <Gift className="w-5 h-5" />
-            Create Custom Template
-          </Button>
+          <TemplateCreator template={{ id: 0, title: "Custom Template", category: "Custom", color: "professional" }}>
+            <Button variant="hero" size="lg">
+              <Gift className="w-5 h-5" />
+              Create Custom Template
+            </Button>
+          </TemplateCreator>
         </div>
       </div>
     </section>
