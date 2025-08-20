@@ -175,36 +175,75 @@ const TemplatePreview = ({ template, children }: TemplatePreviewProps) => {
                 className="relative overflow-hidden"
                 style={{ background: theme.background }}
               >
-                <div className="relative p-6 min-h-[300px] flex flex-col items-center justify-center text-center">
-                  <div 
-                    className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
-                    style={{ backgroundColor: theme.primary + "20" }}
-                  >
-                    <SampleIcon className="w-8 h-8" style={{ color: theme.primary }} />
-                  </div>
-                  
-                  <h1 className="text-2xl font-bold mb-3" style={{ color: theme.primary }}>
-                    {sampleContent.title}
-                  </h1>
-                  
-                  <p className="text-sm text-foreground/70 max-w-md mb-4">
-                    {sampleContent.message.substring(0, 80)}...
-                  </p>
-
-                  <div className="w-32 h-24 rounded-lg overflow-hidden shadow-sm mb-4">
-                    <img 
-                      src={sampleContent.image} 
-                      alt="Single photo" 
-                      className="w-full h-full object-cover"
-                    />
+                {/* Header section */}
+                <div className="relative p-6 min-h-[500px]">
+                  <div className="text-center mb-6">
+                    <div 
+                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                      style={{ backgroundColor: theme.primary + "20" }}
+                    >
+                      <SampleIcon className="w-8 h-8" style={{ color: theme.primary }} />
+                    </div>
+                    
+                    <h1 className="text-3xl font-bold mb-3" style={{ color: theme.primary }}>
+                      {sampleContent.title}
+                    </h1>
+                    
+                    <p className="text-base text-foreground/70 max-w-md mx-auto mb-6">
+                      {sampleContent.message}
+                    </p>
                   </div>
 
-                  <Button 
-                    size="sm"
-                    style={{ backgroundColor: theme.primary, color: 'white' }}
-                  >
-                    {sampleContent.buttonText}
-                  </Button>
+                  {/* Main content section with photo */}
+                  <div className="flex flex-col items-center mb-6">
+                    <div className="w-64 h-48 rounded-lg overflow-hidden shadow-md mb-6">
+                      <img 
+                        src={sampleContent.image} 
+                        alt="Main content photo" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    
+                    {/* Additional content section */}
+                    <div className="bg-background/30 rounded-lg p-4 max-w-sm mx-auto mb-6">
+                      <h3 className="font-semibold mb-2" style={{ color: theme.primary }}>Message Details</h3>
+                      <p className="text-sm text-foreground/60 mb-3">
+                        This beautiful single-page design includes all essential elements for your message.
+                      </p>
+                      <div className="flex items-center gap-2 text-xs text-foreground/50">
+                        <Calendar className="w-3 h-3" />
+                        <span>Single page layout</span>
+                      </div>
+                    </div>
+
+                    {/* Contact/Action section */}
+                    <div className="space-y-3">
+                      <Button 
+                        style={{ backgroundColor: theme.primary, color: 'white' }}
+                        className="w-full"
+                      >
+                        <Heart className="w-4 h-4 mr-2" />
+                        {sampleContent.buttonText}
+                      </Button>
+                      
+                      <div className="text-center">
+                        <p className="text-xs text-foreground/50">Share this message</p>
+                        <div className="flex justify-center gap-2 mt-2">
+                          <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                            <Heart className="w-3 h-3" style={{ color: theme.primary }} />
+                          </div>
+                          <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                            <MessageSquare className="w-3 h-3" style={{ color: theme.primary }} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Footer section */}
+                  <div className="text-center text-xs text-foreground/40 mt-6">
+                    Created with ❤️ • Simple & Beautiful
+                  </div>
                 </div>
               </div>
             )}
@@ -217,76 +256,171 @@ const TemplatePreview = ({ template, children }: TemplatePreviewProps) => {
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-primary/20 animate-pulse"></div>
                   <div className="absolute bottom-4 left-4 w-6 h-6 rounded-full bg-primary/30 animate-pulse delay-300"></div>
+                  <div className="absolute top-1/2 right-8 w-4 h-4 rounded-full bg-primary/25 animate-pulse delay-700"></div>
                 </div>
                 
-                <div className="relative p-6 min-h-[400px]">
-                  {/* Header with navigation */}
-                  <div className="flex justify-between items-center mb-6">
+                <div className="relative p-6 min-h-[600px]">
+                  {/* Multi-page navigation header */}
+                  <div className="flex justify-between items-center mb-6 bg-background/20 rounded-lg p-3 backdrop-blur-sm">
                     <div className="flex gap-2">
-                      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.primary }}></div>
-                      <div className="w-2 h-2 rounded-full bg-muted"></div>
-                      <div className="w-2 h-2 rounded-full bg-muted"></div>
+                      <div className="px-2 py-1 rounded text-xs font-medium" style={{ backgroundColor: theme.primary, color: 'white' }}>Home</div>
+                      <div className="px-2 py-1 rounded text-xs text-primary/70 hover:bg-primary/10 cursor-pointer">Gallery</div>
+                      <div className="px-2 py-1 rounded text-xs text-primary/70 hover:bg-primary/10 cursor-pointer">Story</div>
+                      <div className="px-2 py-1 rounded text-xs text-primary/70 hover:bg-primary/10 cursor-pointer">Contact</div>
                     </div>
-                    <Globe className="w-4 h-4 text-primary" />
+                    <div className="flex items-center gap-2">
+                      <Globe className="w-4 h-4 text-primary" />
+                      <Badge variant="outline" className="text-xs">Multi-Page</Badge>
+                    </div>
                   </div>
 
-                  <div className="text-center mb-6">
+                  {/* Hero section */}
+                  <div className="text-center mb-8">
                     <div 
-                      className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm border-2 animate-pulse"
+                      className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm border-2 animate-pulse relative"
                       style={{ backgroundColor: theme.primary + "15", borderColor: theme.primary + "30" }}
                     >
-                      <SampleIcon className="w-10 h-10" style={{ color: theme.primary }} />
+                      <SampleIcon className="w-12 h-12" style={{ color: theme.primary }} />
+                      <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                        <Play className="w-2 h-2 text-white" />
+                      </div>
                     </div>
                     
-                    <h1 className="text-3xl font-bold mb-3" style={{ color: theme.primary }}>
+                    <h1 className="text-4xl font-bold mb-4" style={{ color: theme.primary }}>
                       {sampleContent.title}
                     </h1>
                     
-                    <p className="text-base text-foreground/80 max-w-lg mx-auto">
+                    <p className="text-lg text-foreground/80 max-w-2xl mx-auto leading-relaxed mb-6">
                       {sampleContent.message}
                     </p>
                   </div>
 
-                  {/* Interactive counter */}
-                  <div className="bg-background/20 rounded-lg p-4 mb-4 backdrop-blur-sm text-center">
-                    <div 
-                      className="text-xl font-bold cursor-pointer hover:scale-105 transition-transform"
-                      style={{ color: theme.primary }}
-                      onClick={() => setLoveCounter(prev => prev + 1)}
-                    >
-                      ❤️ {loveCounter} memories
-                    </div>
-                    <div className="text-xs text-foreground/60">Click to add more!</div>
-                  </div>
-
-                  {/* Photo grid */}
-                  <div className="grid grid-cols-3 gap-2 mb-6 max-w-xs mx-auto">
-                    {[0, 1, 2].map((i) => (
-                      <div key={i} className="aspect-square rounded-md overflow-hidden shadow-sm hover:scale-105 transition-transform cursor-pointer">
-                        <img 
-                          src={sampleContent.image} 
-                          alt={`Photo ${i + 1}`} 
-                          className="w-full h-full object-cover"
-                          style={{ filter: i === 1 ? 'sepia(0.3)' : i === 2 ? 'grayscale(0.5)' : 'none' }}
-                        />
+                  {/* Interactive features section */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    {/* Live counter */}
+                    <Card className="p-4 bg-background/20 backdrop-blur-sm border-primary/20 hover:scale-105 transition-transform cursor-pointer">
+                      <div className="text-center">
+                        <div 
+                          className="text-2xl font-bold mb-1"
+                          style={{ color: theme.primary }}
+                          onClick={() => setLoveCounter(prev => prev + 1)}
+                        >
+                          ❤️ {loveCounter}
+                        </div>
+                        <div className="text-xs text-foreground/60">Interactive Counter</div>
+                        <div className="text-xs text-foreground/40">Click to increase!</div>
                       </div>
-                    ))}
+                    </Card>
+
+                    {/* Music player mockup */}
+                    <Card className="p-4 bg-background/20 backdrop-blur-sm border-primary/20">
+                      <div className="text-center">
+                        <div 
+                          className="w-8 h-8 rounded-full mx-auto mb-2 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
+                          style={{ backgroundColor: theme.primary }}
+                          onClick={() => setIsPlaying(!isPlaying)}
+                        >
+                          {isPlaying ? (
+                            <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                          ) : (
+                            <Play className="w-3 h-3 text-white ml-0.5" />
+                          )}
+                        </div>
+                        <div className="text-xs font-medium" style={{ color: theme.primary }}>
+                          {isPlaying ? "Now Playing..." : "Play Music"}
+                        </div>
+                        <div className="text-xs text-foreground/60">Background Audio</div>
+                      </div>
+                    </Card>
                   </div>
 
-                  {/* Interactive buttons */}
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    <Button 
-                      style={{ backgroundColor: theme.primary, color: 'white' }}
-                      className="hover:scale-105 transition-transform"
-                    >
-                      <Heart className="w-4 h-4 mr-2" />
-                      {sampleContent.buttonText}
-                    </Button>
-                    
-                    <Button variant="outline" className="border-primary/30 hover:scale-105 transition-transform">
-                      <MessageSquare className="w-4 h-4 mr-2" />
-                      Message
-                    </Button>
+                  {/* Enhanced photo gallery */}
+                  <div className="mb-6">
+                    <h3 className="text-lg font-semibold mb-3 text-center" style={{ color: theme.primary }}>
+                      Photo Gallery
+                    </h3>
+                    <div className="grid grid-cols-4 gap-2 max-w-lg mx-auto mb-4">
+                      {[0, 1, 2, 3].map((i) => (
+                        <div key={i} className="group relative aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all cursor-pointer">
+                          <img 
+                            src={sampleContent.image} 
+                            alt={`Gallery ${i + 1}`} 
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                            style={{ filter: i === 1 ? 'sepia(0.3)' : i === 2 ? 'grayscale(0.5)' : i === 3 ? 'brightness(1.2)' : 'none' }}
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                          <div className="absolute bottom-1 right-1 w-4 h-4 bg-white/80 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Camera className="w-2 h-2 text-gray-700" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="text-center text-xs text-foreground/50">
+                      Click any photo to view in fullscreen
+                    </div>
+                  </div>
+
+                  {/* Story timeline section */}
+                  <div className="mb-6 bg-background/10 rounded-lg p-4">
+                    <h3 className="text-lg font-semibold mb-3 text-center" style={{ color: theme.primary }}>
+                      Our Timeline
+                    </h3>
+                    <div className="space-y-3">
+                      {['First Meeting', 'First Date', 'Special Moment'].map((event, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                          <div 
+                            className="w-3 h-3 rounded-full"
+                            style={{ backgroundColor: theme.primary }}
+                          ></div>
+                          <div className="flex-1 text-sm">
+                            <span className="font-medium">{event}</span>
+                            <span className="text-foreground/60 ml-2">2024</span>
+                          </div>
+                          <Clock className="w-3 h-3 text-foreground/40" />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action buttons with more options */}
+                  <div className="space-y-3">
+                    <div className="flex gap-2 justify-center">
+                      <Button 
+                        style={{ backgroundColor: theme.primary, color: 'white' }}
+                        className="hover:scale-105 transition-transform"
+                      >
+                        <Heart className="w-4 h-4 mr-2" />
+                        {sampleContent.buttonText}
+                      </Button>
+                      
+                      <Button variant="outline" className="border-primary/30 hover:scale-105 transition-transform">
+                        <MessageSquare className="w-4 h-4 mr-2" />
+                        Leave Message
+                      </Button>
+                    </div>
+
+                    <div className="flex gap-2 justify-center">
+                      <Button variant="ghost" size="sm" className="text-primary/70 hover:text-primary">
+                        <Camera className="w-4 h-4 mr-1" />
+                        Gallery
+                      </Button>
+                      <Button variant="ghost" size="sm" className="text-primary/70 hover:text-primary">
+                        <Music className="w-4 h-4 mr-1" />
+                        Music
+                      </Button>
+                      <Button variant="ghost" size="sm" className="text-primary/70 hover:text-primary">
+                        <Users className="w-4 h-4 mr-1" />
+                        Share
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Page indicator */}
+                  <div className="flex justify-center mt-6 gap-1">
+                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.primary }}></div>
+                    <div className="w-2 h-2 rounded-full bg-primary/30"></div>
+                    <div className="w-2 h-2 rounded-full bg-primary/30"></div>
+                    <div className="w-2 h-2 rounded-full bg-primary/30"></div>
                   </div>
                 </div>
               </div>
